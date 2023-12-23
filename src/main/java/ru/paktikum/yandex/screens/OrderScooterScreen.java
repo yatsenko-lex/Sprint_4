@@ -6,8 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-
+import java.time.Duration;
 
 public class OrderScooterScreen {
 
@@ -44,7 +43,7 @@ public class OrderScooterScreen {
 
     public OrderScooterScreen(WebDriver driver) {
         this.driver = driver;
-        this.driverWait = new WebDriverWait(driver, 3);
+        this.driverWait = new WebDriverWait(driver, Duration.ofSeconds(3));
     }
 
     //методы для работы с элементами блока "Для кого самокат"
@@ -120,5 +119,20 @@ public class OrderScooterScreen {
         chooseSubway();
         fillPhone(phone);
         clickContinueButton();
+    }
+
+    public void setOrderDetails(String firstName, String lastName, String address, String phone, String comment) {
+        waitForLoadOrderPage();
+        fillInfo(firstName, lastName, address, phone);
+        chooseDeliveryDate();
+        chooseRentPeriod();
+        chooseBlackColour();
+        fillComment(comment);
+    }
+
+    public void confirmScooterOrder() {
+        clickOrderButton();
+        confirmOrder();
+        checkOrder();
     }
 }

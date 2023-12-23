@@ -29,13 +29,13 @@ public class ScooterMainPageScreen {
 
     public void clickOrderButton() {
         WebElement element = driver.findElement(orderButton);
-        ((JavascriptExecutor).driver).executeScript("arguments[0].scrollIntoView();", element);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
         driver.findElement(orderButton).click();
     }
 
     public void scrollToQuestions(){
         WebElement element = driver.findElement(questionsList);
-        ((JavascriptExecutor).driver).executeScript("arguments[0].scrollIntoView();", element);
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
     }
 
     public String getQuestionTitle(String questionTitle){

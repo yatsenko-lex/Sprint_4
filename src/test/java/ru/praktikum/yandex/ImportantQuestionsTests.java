@@ -1,7 +1,5 @@
 package ru.praktikum.yandex;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -10,20 +8,20 @@ import ru.paktikum.yandex.screens.ScooterMainPageScreen;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class ImportantQuestionsTests extends BaseTests{
+public class ImportantQuestionsTests extends BaseTests {
 
     private String expectedTitle;
     private String expectedDescription;
     private String i;
 
-    public ImportantQuestionsTests(String i, String expectedTitle, String expectedDescription){
+    public ImportantQuestionsTests(String i, String expectedTitle, String expectedDescription) {
         this.i = i;
         this.expectedTitle = expectedTitle;
         this.expectedDescription = expectedDescription;
     }
 
     @Parameterized.Parameters
-    public static Object[][] getQuestions(){
+    public static Object[][] getQuestions() {
         return new Object[][]{
                 {"0", "Сколько это стоит? И как оплатить?", "Сутки — 400 рублей. Оплата курьеру — наличными или картой."},
                 {"1", "Хочу сразу несколько самокатов! Так можно?", "Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим."},
@@ -36,14 +34,8 @@ public class ImportantQuestionsTests extends BaseTests{
         };
     }
 
-    @Before
-    public void setUp(){
-        setUpBrowser();
-        openSite();
-    }
-
     @Test
-    public void checkQuestionsAndDescriptionsTest(){
+    public void checkQuestionsAndDescriptionsTest() {
         ScooterMainPageScreen scooter = new ScooterMainPageScreen(driver);
         scooter.scrollToQuestions();
         String actualTitle = scooter.getQuestionTitle(i);
@@ -52,8 +44,4 @@ public class ImportantQuestionsTests extends BaseTests{
         assertEquals("Неверное описание", expectedDescription, actualDescription);
     }
 
-    @After
-    public void tearDown(){
-        closeBrowser();
-    }
 }

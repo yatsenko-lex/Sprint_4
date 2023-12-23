@@ -1,24 +1,32 @@
 package ru.praktikum.yandex;
 
+import org.junit.After;
+import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import ru.paktikum.yandex.screens.ScooterMainPageScreen;
 
 public abstract class BaseTests {
 
     public WebDriver driver;
 
-    public void setUpBrowser(){
+    @Before
+    public void setUp() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
+        driver = new ChromeDriver(options);
+        driver.get("https://qa-scooter.praktikum-services.ru/");
+    }
+
+    @After
+    public void tearDown() {
+        driver.quit();
+    }
+
+    public void setUpBrowser() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
     }
-    public void openSite(){
-        driver.get("https://qa-scooter.praktikum-services.ru/");
-    }
 
-    public void closeBrowser(){
-        driver.quit();
-    }
 }
